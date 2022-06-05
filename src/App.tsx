@@ -1,27 +1,24 @@
 import React from 'react';
+import { VisualInput } from './components/VisualInput';
+
 import './App.scss';
-
-interface Props {
-  onClick: () => void;
-}
-
-export const Provider: React.FC<Props> = React.memo(
-  ({ onClick, children }) => (
-    <button
-      type="button"
-      onClick={onClick}
-    >
-      {children}
-    </button>
-  ),
-);
 
 export const App: React.FC = () => {
   return (
     <div className="starter">
-      <Provider onClick={() => ({})}>
-        <TodoList />
-      </Provider>
+      <VisualInput />
     </div>
   );
 };
+
+const data = async () => {
+  const test = await fetch('file//c:/MY_PROJECTS/TEST_TASKS/react_test_project_store/src/csv/test_csv.csv');
+
+  // eslint-disable-next-line no-console
+  console.log('test', test.text);
+
+  return test.json;
+};
+
+// eslint-disable-next-line no-console
+console.log('data', data());
